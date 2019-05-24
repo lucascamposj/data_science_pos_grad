@@ -1,0 +1,13 @@
+Loading required package: XML
+Loading required package: methods
+Loading required package: hash
+hash-2.2.6 provided by Decision Patterns
+
+Loading required package: jsonlite
+Loading required package: stringdist
+[1] "/var/www/analytics/data/analyses/797/797.config.json"
+/var/www/analytics/data/analyses/797/advise.json Ok->gravado 
+/var/www/analytics/data/analyses/797/publication.json Ok->gravado 
+/var/www/analytics/data/analyses/797/profile.json Ok->gravado 
+/var/www/analytics/data/analyses/797/graph.json Ok->gravado 
+/var/www/analytics/data/analyses/797/researchers_by_area.json Ok->gravado 
