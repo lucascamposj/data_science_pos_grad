@@ -145,6 +145,16 @@ Para a coleta de dados dos programas de graduação citados acima, utilizamos a 
 
 #### 
 ```
+library(tidyverse); library(jsonlite); library(listviewer);
+
+#Ler o arquivo profile
+profile <- jsonlite::fromJSON("comp_aplicada/profile.json")
+public <- jsonlite::fromJSON("comp_aplicada/publication.json")
+advise <- jsonlite::fromJSON("comp_aplicada/advise.json")
+
+#Arquivo com funcionalidades que transformam o arquivo formato list em DataFrames
+source("scripts/elattes.ls2df.R")
+
 concluidas <- advise %>% names() %>% grepl(pattern = "CONCLUIDA")
 
 for (i in names(advise[concluidas])){
@@ -179,11 +189,63 @@ ggplot(orient_p_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
     geom_line(aes(alpha = 0.3)) +
     geom_point(aes(alpha = 0.3))
     
+# extrai producao bibliografica de todos os professores 
+pr.df.pub <- extrai.producoes(profile)
+
 #Eventos por país
 pr.df.pub %>%
   filter(tipo_producao == 'EVENTO') %>%
-  group_by(pais_do_evento) %>%
-  ggplot(aes(factor(pais_do_evento))) + geom_bar() + coord_flip()
+  group_by(pais_do_evento) %>% summarize(n = n()) %>%
+  ggplot() + geom_bar(mapping = aes(x = factor(pais_do_evento), y = n), fill = '#1287F6', stat = "identity") + coord_flip() + xlab("País do evento") + ylab("Quantidade de eventos") + labs(title = "Eventos por país")
+  
+# Número de produções em eventos por ano
+pr.df.pub %>%
+  filter(tipo_producao == 'EVENTO') %>%
+  group_by(ano_do_trabalho) %>% summarize(n = n()) %>%
+  ggplot() +
+  geom_bar(mapping = aes(x = ano_do_trabalho, y = n), fill = '#1287F6', stat = "identity") 
+  
+
+# Número de produções em periodicos por ano
+  pr.df.pub %>%
+  filter(tipo_producao == 'PERIODICO') %>%
+  group_by(ano) %>% summarize(n = n()) %>%
+  ggplot() +
+  geom_bar(mapping = aes(x = ano, y = n), fill = '#1287F6', stat = "identity") 
+  
+  pr.df.areas <- extrai.areas.atuacao(profile)
+
+# Area de atuação grande area:
+  pr.df.areas %>%
+  group_by(grande_area) %>% summarize(n = n()) %>%
+  ggplot() +
+  geom_bar(mapping = aes(x = grande_area, y = n), fill = '#1287F6', stat = "identity") + coord_flip()
+  
+# Area de atuação area:
+pr.df.areas %>%
+group_by(area) %>% summarize(n = n()) %>%
+  ggplot() +
+  geom_bar(mapping = aes(x = area, y = n), fill = '#1287F6', stat = "identity") + coord_flip()
+
+# Area de atuação especialidade:
+  pr.df.areas %>%
+  filter(especialidade != '') %>%
+  group_by(especialidade) %>% summarize(n = n()) %>%
+  ggplot() +
+  geom_bar(mapping = aes(x = especialidade, y = n), fill = '#1287F6', stat = "identity") + coord_flip()
+  
+# Financiamento de Orientações concluidas de pós-graduação:
+orient.df %>%
+  filter(agencia_financiadora != '') %>%
+  group_by(agencia_financiadora) %>% summarize(n = n()) %>%
+  ggplot() + geom_bar(mapping = aes(x = agencia_financiadora, y = n), fill = '#1287F6', stat = "identity") + coord_flip()
+  
+# Financiamento de Orientações em andamento de pós-graduação do ano de 2018:
+orient_p.df %>%
+  filter(agencia_financiadora != '' & ano == 2018) %>%
+  group_by(agencia_financiadora) %>% summarize(n = n()) %>%
+  ggplot() + geom_bar(mapping = aes(x = agencia_financiadora, y = n), fill = '#1287F6', stat = "identity") + coord_flip()
+  
 ```
 
 
