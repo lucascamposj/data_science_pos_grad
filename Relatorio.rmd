@@ -10,7 +10,6 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 ## Introdução
 
 A disciplina Data Science For All (Ciência de Dados para Todos) da Universidade de Brasília tem como foco integral a aplicação de ciência da dados como ferramenta eficiente de análise. 
@@ -85,6 +84,8 @@ As fases que compõem o CRISP-DM são as seguintes:
 6. **Implantação**: Inserção dos produtos desenvolvidos para uso, com um monitoramento regular, sendo feitas adaptações e ajustes quando necessários. Essa fase marca o fim da produção do projeto.
 
 As metodologias propostas pelo CRISP-DM estão apresentados no diagrama abaixo:
+\newline
+\newline
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{img/crisp_dm.png}
@@ -201,7 +202,7 @@ ggplot(orient_p_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
     geom_point(alpha = 0.6) +
     xlab("Ano") + ylab("Quantidade") + labs(title = "Natureza das supervisões em andamento")
 ```
-
+\newpage
 Com o gráfico abaixo, observamos que a maioria dos docentes do programa de pós-graduação participou de eventos internacionais e, também, em 126 eventos pelo Brasil. Embora a maioria dos eventos atentidos pelos docentes serem no Brasil, observa-se um bom número de presenças em eventos internacionais principalmente nos Estados Unidos. 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=5}
 # extrai producao bibliografica de todos os professores 
@@ -286,7 +287,7 @@ orient_p.df %>%
   geom_text(hjust =-0.1, vjust=0.5)
 ```
 
-
+\newpage
 ### Ciência da Computação e Matemática Aplicada
 ```{r echo=FALSE, warning=FALSE, message=FALSE, results="hide"}
 library(tidyverse); library(jsonlite); library(listviewer);
@@ -338,13 +339,13 @@ ggplot(orient_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
 \newpage
 O gráfico abaixo nos apresenta números a respeito dos tipos de orientação não concluídos em função dos anos. Podemos observar um significativo aumento, a cada ano, nas orientações de mestrado não concluídas, chegando a seu maior valor do periodo em 2018. Com sua maior variação ocorrendo em 2017. Em contrapartida, no período de 2017 a 2018, observa-se uma grande queda nas teses de doutorado.   
 \newline
-```{r echo=FALSE, warning=FALSE, message=FALSE,fig.align='center', fig.width=6, fig.height=4}
+```{r echo=FALSE, warning=FALSE, message=FALSE,fig.align='center'}
 ggplot(orient_p_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
     geom_line(alpha = 0.6) +
     geom_point(alpha = 0.6) +
     xlab("Ano") + ylab("Quantidade") + labs(title = "Natureza das supervisões em andamento")
 ```
-
+\newpage
 Com o gráfico abaixo, observamos que a maioria dos docentes do programa de pós-graduação participou de eventos internacionais. Embora a maioria dos eventos atentidos pelos docentes serem no Brasil, observa-se um grande número de presenças em eventos internacionais principalmente nos Estados Unidos.
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=5}
 # extrai producao bibliografica de todos os professores 
@@ -380,7 +381,7 @@ pr.df.pub %>%
   
   pr.df.areas <- extrai.areas.atuacao(profile)
 ```
-
+\newpage
 Abaixo, podemos notar que grande parte dos docentes desse programa possuem como grande área a de Ciências Exatas e da Terra seguido por Engenharias. Esse fato nos mostra que as grandes áreas dos pesquisadores envolvidos no programa estão condizentes com a proposta do programa de pós-graduação.
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3}
 # Area de atuação grande area:
@@ -401,7 +402,7 @@ group_by(area) %>% summarize(n = n()) %>%
   geom_text(hjust =-0.1, vjust=0.5)
 ```
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=10}
 # Area de atuação especialidade:
   pr.df.areas %>%
   filter(especialidade != '') %>%
@@ -432,11 +433,12 @@ orient_p.df %>%
   geom_text(hjust =-0.1, vjust=0.5)
 ```
 
-## Comparações
+## Análise dos resultados
 
 Analisando as orientações concluídas do programa de pós-graduação podemos perceber uma ampla diferença, tanto na quantidade de docentes quanto na produção científica em si. O programa Ciência da Computação e Matemática Aplicada, além de mais antigo, possui um número significativo de dicentes, consequentemente, maior participação internacional, observando um foco nos Estados Unidos - juntamente no programa de pós-graduação de Computação Aplicada -, e também em diversos países da Ásia e Europa. Além disso, observamos um maior número de grandes empresas financiadoras, em comparação ao programa de pós-graduação de Computação Aplicada.
 Todos essas observações comprovam as disparidades entre os programas, justificando uma nota 7 no programa Ciência da Computação e Matemática Aplicada e 3 no programa Computação Aplicada.
 
+\newpage
 ## Referências
 
 [1] Jorge Henrique Cabral Fernandes, Ricardo Barros Sampaio. Unb Aprender, 2019. Sobre a Ciência e sua Avaliação. 
