@@ -181,12 +181,12 @@ orient_sum <- group_by(orient.df, ano, natureza) %>%
 orient_p_sum <- group_by(orient_p.df, ano, natureza) %>%
   summarise(n = n())
 ```
-O gráfico abaixo nos apresenta números a respeito dos tipos de orientação concluídos em função dos anos. Podemos observar um significativo aumento nas orientações de mestrado concluídas no ano de 2018. Como o programa de pós-graduação em Computação Aplicada se iniciou no final 2015 - e sabendo que um mestrado tem duração média de 2 anos - podemos concluir que ocorreram 10 orientacoes concluidas de mestrado nesse período. Vale ressaltar que essas orientações são a soma de todos os programas de pós-graduação em que os docentes fazem parte. 
-Também, observamos a veracidade de que existem docentes que não tem dedicação exclusiva com o programa de pós-graduação analisado. Isso pode ser observado no alto numero de supervisões de pós doutorado e de doutorado em 2017.
+O gráfico abaixo nos apresenta números a respeito dos tipos de orientação concluídos em função dos anos. Podemos observar um significativo aumento nas orientações de mestrado concluídas no ano de 2018. Como o programa de pós-graduação em Computação Aplicada se iniciou no final 2015 - e sabendo que um mestrado tem duração média de 2 anos - podemos concluir que ocorreram 10 orientações concluídas de mestrado nesse período. Vale ressaltar que essas orientações são a soma de todos os programas de pós-graduação em que os docentes fazem parte. 
+Também, observamos a veracidade do fato de que existem docentes que não tem dedicação exclusiva com o programa de pós-graduação analisado. Isso pode ser observado no alto número de supervisões de pós-doutorado e de doutorado em 2017.
 \newline
 \newline
 \newline
-```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=6, fig.height=4, fig.align='center'}
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
 ggplot(orient_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
   geom_line(alpha = 0.6) +
   geom_point(alpha = 0.6) +
@@ -195,7 +195,7 @@ ggplot(orient_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
 \newpage
 O gráfico abaixo nos apresenta números a respeito dos tipos de orientação não concluídos em função dos anos. Podemos observar um significativo aumento nas orientações de mestrado não concluídas no ano de 2017. Isso pode nos indicar que o programa de pós-graduação possui relevância por parte dos docentes que fazem parte desse programa.
 \newline
-```{r echo=FALSE, warning=FALSE, message=FALSE,fig.align='center', fig.width=6, fig.height=4}
+```{r echo=FALSE, warning=FALSE, message=FALSE,fig.align='center'}
 ggplot(orient_p_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
     geom_line(alpha = 0.6) +
     geom_point(alpha = 0.6) +
@@ -220,18 +220,20 @@ Com as análises abaixo, percebemos uma leve queda, com o passar dos anos, nos n
 pr.df.pub %>%
   filter(tipo_producao == 'EVENTO') %>%
   group_by(ano_do_trabalho) %>% summarize(n = n()) %>%
-  ggplot() +
-  geom_bar(mapping = aes(x = ano_do_trabalho, y = n), fill = '#1287F6', stat = "identity") +
-  xlab("Ano") + ylab("Quantidade de publicações") + labs(title = "Quantidade de publicações em eventos por ano")
+  ggplot(aes(x = ano_do_trabalho, y = n, label = n)) +
+  geom_bar(fill = '#1287F6', stat = "identity") +
+  xlab("Ano") + ylab("Quantidade de publicações") + labs(title = "Quantidade de publicações em eventos por ano") + 
+  geom_text(hjust = 0.5, vjust=2.5)
 ``` 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3}
 # Número de produções em periodicos por ano
   pr.df.pub %>%
   filter(tipo_producao == 'PERIODICO') %>%
   group_by(ano) %>% summarize(n = n()) %>%
-  ggplot() +
-  geom_bar(mapping = aes(x = ano, y = n), fill = '#1287F6', stat = "identity") +
-  xlab("Ano") + ylab("Quantidade de publicações") + labs(title = "Quantidade de publicações em periódicos por ano")
+  ggplot(aes(x = ano, y = n, label = n)) +
+  geom_bar(fill = '#1287F6', stat = "identity") +
+  xlab("Ano") + ylab("Quantidade de publicações") + labs(title = "Quantidade de publicações em periódicos por ano") + 
+  geom_text(hjust = 0.5, vjust=2.5)
   
   pr.df.areas <- extrai.areas.atuacao(profile)
 ```
@@ -241,8 +243,9 @@ Abaixo, podemos notar que grande parte dos docentes desse programa possuem como 
 # Area de atuação grande area:
   pr.df.areas %>%
   group_by(grande_area) %>% summarize(n = n()) %>%
-  ggplot() +
-  geom_bar(mapping = aes(x = grande_area, y = n), fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Grande Áreas") + ylab("Quantidade de docentes") + labs(title = "Quantidade de docentes por área")
+  ggplot(aes(x = grande_area, y = n, label = n)) +
+  geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Grande Áreas") + ylab("Quantidade de docentes") + labs(title = "Quantidade de docentes por área") + 
+  geom_text(hjust = 0, vjust=0.5)
 ```
 
 Também podemos notar que é predominante a existência de pesquisadores nas áreas ligadas a exatas e a tecnologia.
@@ -250,8 +253,9 @@ Também podemos notar que é predominante a existência de pesquisadores nas ár
 # Area de atuação area:
 pr.df.areas %>%
 group_by(area) %>% summarize(n = n()) %>%
-  ggplot() +
-  geom_bar(mapping = aes(x = area, y = n), fill = '#1287F6', stat = "identity") + coord_flip() + coord_flip() + xlab("Áreas") + ylab("Quantidade de docentes") + labs(title = "Quantidade de docentes por área")
+  ggplot(aes(x = area, y = n, label = n)) +
+  geom_bar( fill = '#1287F6', stat = "identity") + coord_flip() + coord_flip() + xlab("Áreas") + ylab("Quantidade de docentes") + labs(title = "Quantidade de docentes por área") + 
+  geom_text(hjust =-0.1, vjust=0.5)
 ```
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
@@ -269,7 +273,8 @@ Por fim, com as análises abaixo, podemos notar a entrada de algumas empresas pr
 orient.df %>%
   filter(agencia_financiadora != '') %>%
   group_by(agencia_financiadora) %>% summarize(n = n()) %>%
-  ggplot() + geom_bar(mapping = aes(x = agencia_financiadora, y = n), fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Quantidade") + ylab("Empresa Financiadora") + labs(title = "Financiamento de Orientações concluidas de pós-graduação")
+  ggplot(aes(x = agencia_financiadora, y = n,label = n)) + geom_bar( fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Quantidade") + ylab("Empresa Financiadora") + labs(title = "Financiamento de Orientações concluidas de pós-graduação")+ 
+  geom_text(hjust =-0.1, vjust=0.5)
 ```
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=10, fig.height=3}
@@ -277,7 +282,8 @@ orient.df %>%
 orient_p.df %>%
   filter(agencia_financiadora != '' & ano == 2018) %>%
   group_by(agencia_financiadora) %>% summarize(n = n()) %>%
-  ggplot() + geom_bar(mapping = aes(x = agencia_financiadora, y = n), fill = '#1287F6', stat = "identity") + coord_flip()+ xlab("Quantidade") + ylab("Empresa Financiadora") + labs(title = "Financiamento de Orientações em andamento de pós-graduação do ano de 2018")
+  ggplot(aes(x = agencia_financiadora, y = n, label = n)) + geom_bar(fill = '#1287F6', stat = "identity") + coord_flip()+ xlab("Quantidade") + ylab("Empresa Financiadora") + labs(title = "Financiamento de Orientações em andamento de pós-graduação do ano de 2018")+ 
+  geom_text(hjust =-0.1, vjust=0.5)
 ```
 
 
@@ -319,7 +325,7 @@ orient_sum <- group_by(orient.df, ano, natureza) %>%
 orient_p_sum <- group_by(orient_p.df, ano, natureza) %>%
   summarise(n = n())
 ```
-O gráfico abaixo nos apresenta números a respeito dos tipos de orientação concluídas em função dos anos. Podemos observar uma significativa queda nas orientações de mestradas concluídas no ano de 2017.Em contrapartida, temos um aumento significativo nas orientacoes concluídas de doutorados. Curiosamente, no ano de 2018, os numeros de orientacoes concluidas de doutorado e mestrado se aproximam bastante. Vale ressaltar que essas orientações são a soma de todos os programas de pós-graduação em que os docentes fazem parte. 
+O gráfico abaixo nos apresenta números a respeito dos tipos de orientação concluídas em função dos anos. Podemos observar uma significativa queda nas orientações de mestrados concluídas no ano de 2017.Em contrapartida, temos um aumento significativo nas orientações concluídas de doutorados. Curiosamente, no ano de 2018, os números de orientações concluídas de doutorado e mestrado se aproximam bastante. Vale ressaltar que essas orientações são a soma de todos os programas de pós-graduação em que os docentes fazem parte. 
 \newline
 \newline
 \newline
@@ -357,18 +363,20 @@ Com as análises abaixo, percebemos uma leve queda, com o passar dos anos, nos n
 pr.df.pub %>%
   filter(tipo_producao == 'EVENTO') %>%
   group_by(ano_do_trabalho) %>% summarize(n = n()) %>%
-  ggplot() +
-  geom_bar(mapping = aes(x = ano_do_trabalho, y = n), fill = '#1287F6', stat = "identity") +
-  xlab("Ano") + ylab("Quantidade de publicações") + labs(title = "Quantidade de publicações em eventos por ano")
+  ggplot(aes(x = ano_do_trabalho, y = n, label = n)) +
+  geom_bar(fill = '#1287F6', stat = "identity") +
+  xlab("Ano") + ylab("Quantidade de publicações") + labs(title = "Quantidade de publicações em eventos por ano") + 
+  geom_text(hjust =0.5, vjust=2.5)
 ``` 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3}
 # Número de produções em periodicos por ano
   pr.df.pub %>%
   filter(tipo_producao == 'PERIODICO') %>%
   group_by(ano) %>% summarize(n = n()) %>%
-  ggplot() +
-  geom_bar(mapping = aes(x = ano, y = n), fill = '#1287F6', stat = "identity") +
-  xlab("Ano") + ylab("Quantidade de publicações") + labs(title = "Quantidade de publicações em periódicos por ano")
+  ggplot(aes(x = ano, y = n, label = n)) +
+  geom_bar( fill = '#1287F6', stat = "identity") +
+  xlab("Ano") + ylab("Quantidade de publicações") + labs(title = "Quantidade de publicações em periódicos por ano") + 
+  geom_text(hjust =0.5, vjust=2.5)
   
   pr.df.areas <- extrai.areas.atuacao(profile)
 ```
@@ -378,8 +386,9 @@ Abaixo, podemos notar que grande parte dos docentes desse programa possuem como 
 # Area de atuação grande area:
   pr.df.areas %>%
   group_by(grande_area) %>% summarize(n = n()) %>%
-  ggplot() +
-  geom_bar(mapping = aes(x = grande_area, y = n), fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Grande Áreas") + ylab("Quantidade de docentes") + labs(title = "Quantidade de docentes por área")
+  ggplot(aes(x = grande_area, y = n, label = n)) +
+  geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Grande Áreas") + ylab("Quantidade de docentes") + labs(title = "Quantidade de docentes por área") + 
+  geom_text(hjust =-0.1, vjust=0.5)
 ```
 
 Também podemos notar que é predominante a existência de pesquisadores nas áreas ligadas a exatas e a tecnologia. Nota-se, também, uma grande pluraridade de áreas, incluindo áreas das ciências humanas e da saúde. 
@@ -387,8 +396,9 @@ Também podemos notar que é predominante a existência de pesquisadores nas ár
 # Area de atuação area:
 pr.df.areas %>%
 group_by(area) %>% summarize(n = n()) %>%
-  ggplot() +
-  geom_bar(mapping = aes(x = area, y = n), fill = '#1287F6', stat = "identity") + coord_flip() + coord_flip() + xlab("Áreas") + ylab("Quantidade de docentes") + labs(title = "Quantidade de docentes por área")
+  ggplot(aes(x = area, y = n, label = n)) +
+  geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + coord_flip() + xlab("Áreas") + ylab("Quantidade de docentes") + labs(title = "Quantidade de docentes por área") + 
+  geom_text(hjust =-0.1, vjust=0.5)
 ```
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
@@ -398,17 +408,19 @@ group_by(area) %>% summarize(n = n()) %>%
   group_by(especialidade) %>% summarize(n = n()) %>%
   arrange(desc(n)) %>%
   head(n=10)%>%
-  ggplot() +
-  geom_bar(mapping = aes(x = especialidade, y = n), fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Quantidade") + ylab("Especialidade") + labs(title = "Quantidade de docentes por especialidade (10 maiores)")
+  ggplot(aes(x = especialidade, y = n, label = n)) +
+  geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Quantidade") + ylab("Especialidade") + labs(title = "Quantidade de docentes por especialidade (10 maiores)") + 
+  geom_text(hjust =-0.1, vjust=0.5)
 ```
 \newpage
-Por fim, com as análises abaixo, podemos notar a entrada de algumas empresas privadas financiadoras de importância no ano de 2018, como a Intel e a Algar Telecom, em orientações de pós-graduação não concluídas.É evidente a importância dos docentes desse programa de pós-graduação, pois existem investimentos de grandes empresas internacionais como a Google, Samsung e até mesmo a União Europeia. Ainda assim, é notorio a grande participacao no investimento público do Governo Federal e do Governo do Estado de São Paulo.
+Por fim, com as análises abaixo, podemos notar a entrada de algumas empresas privadas financiadoras de importância no ano de 2018, como a Intel e a Algar Telecom, em orientações de pós-graduação não concluídas.É evidente a importância dos docentes desse programa de pós-graduação, pois existem investimentos de grandes empresas internacionais como a Google, Samsung e até mesmo a União Europeia. Ainda assim, é notório a grande participação no investimento público do Governo Federal e do Governo do Estado de São Paulo.
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=10, fig.height=3} 
 # Financiamento de Orientações concluidas de pós-graduação:
 orient.df %>%
   filter(agencia_financiadora != '') %>%
   group_by(agencia_financiadora) %>% summarize(n = n()) %>%
-  ggplot() + geom_bar(mapping = aes(x = agencia_financiadora, y = n), fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Empresa Financiadora") + ylab("Quantidade") + labs(title = "Financiamento de Orientações concluídas de pós-graduação do ano de 2018")
+  ggplot(aes(x = agencia_financiadora, y = n, label = n)) + geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Empresa Financiadora") + ylab("Quantidade") + labs(title = "Financiamento de Orientações concluídas de pós-graduação do ano de 2018") + 
+  geom_text(hjust =-0.1, vjust=0.5)
 ```
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=10, fig.height=3}
@@ -416,8 +428,14 @@ orient.df %>%
 orient_p.df %>%
   filter(agencia_financiadora != '' & ano == 2018) %>%
   group_by(agencia_financiadora) %>% summarize(n = n()) %>%
-  ggplot() + geom_bar(mapping = aes(x = agencia_financiadora, y = n), fill = '#1287F6', stat = "identity") + coord_flip()+ xlab("Empresa Financiadora") + ylab("Quantidade") + labs(title = "Financiamento de Orientações em andamento de pós-graduação do ano de 2018")
+  ggplot(aes(x = agencia_financiadora, y = n, label = n)) + geom_bar(fill = '#1287F6', stat = "identity") + coord_flip()+ xlab("Empresa Financiadora") + ylab("Quantidade") + labs(title = "Financiamento de Orientações em andamento de pós-graduação do ano de 2018") + 
+  geom_text(hjust =-0.1, vjust=0.5)
 ```
+
+## Comparações
+
+Analisando as orientações concluídas do programa de pós-graduação podemos perceber uma ampla diferença, tanto na quantidade de docentes quanto na produção científica em si. O programa Ciência da Computação e Matemática Aplicada, além de mais antigo, possui um número significativo de dicentes, consequentemente, maior participação internacional, observando um foco nos Estados Unidos - juntamente no programa de pós-graduação de Computação Aplicada -, e também em diversos países da Ásia e Europa. Além disso, observamos um maior número de grandes empresas financiadoras, em comparação ao programa de pós-graduação de Computação Aplicada.
+Todos essas observações comprovam as disparidades entre os programas, justificando uma nota 7 no programa Ciência da Computação e Matemática Aplicada e 3 no programa Computação Aplicada.
 
 ## Referências
 
