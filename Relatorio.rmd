@@ -1,5 +1,6 @@
 ---
 title: "Ciência de Dados Para Todos (Data Science For All) - 2019.1 - Análise da Produção Científica e Acadêmica da Universidade de São Paulo - Relatório sobre os programas de pós-graduação do Departamento de Ciência da Computação"
+date: "30/06/2019"
 author:
 - Andre Garrido Damaceno - 15/0117531
 - João Marcelo Nunes Chaves - 15/0132085
@@ -12,11 +13,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ## Introdução
 
-A disciplina Data Science For All (Ciência de Dados para Todos) da Universidade de Brasília tem como foco integral a aplicação de ciência da dados como ferramenta eficiente de análise. 
+A disciplina Data Science For All (Ciência de Dados para Todos), minitrada por Jorge Henrique Cabral Fernandes e
+Ricardo Barros Sampaio, do departamento de Ciência da Computação da Universidade de Brasília tem como foco integral a aplicação de ciência da dados como ferramenta eficiente de análise. 
 O tema de estudo escolhido para realização da prática de ciência de dados foi o cenário atual da Pós-Graduação Brasileira, para que seus dados sejam processados e estudados com o objetivo de se retirar análises a respeito da qualidade, relevância, e produtividade dos programas de pós-graduação brasileiros.
  A fonte dos dados utilizados são dados disponíveis pela CAPES  (Coordenação de Aperfeiçoamento de Pessoal de Nível Superior). Órgão que já recolhe dados quantitativos e qualitativos sobre a pesquisa nacional, como currículos de professores e pesquisadores, além de avaliações recorrentes sobre os programas de pós-graduação a serem estudados.
 A interpretação e manipulação dos dados da CAPES adquiridos seguiram o modelo CRISP-DM, que guiará o projeto e será descrito ao longo do estudo.
 Sendo o cenário de pesquisa deste projeto a pós-graduação brasileira, foram escolhidos dois programas de pós-graduação como objetos de estudo, de onde serão extraídos seus dados. Serão estes:
+
  * Programa de pós graduação em Ciência da Computação e Matemática Aplicada pela Universidade de São Paulo USP/SC
  * Programa de pós graduação em Computação Aplicada pela Universidade de São Paulo USP/RP
 
