@@ -5,6 +5,10 @@ author:
 - Andre Garrido Damaceno - 15/0117531
 - João Marcelo Nunes Chaves - 15/0132085
 - Lucas Campos Jorge - 15/0154135
+header-includes:
+   - \usepackage{float}
+   - \usepackage[brazilian]{babel}
+   - \usepackage[utf8]{inputenc}
 output: pdf_document
 ---
 
@@ -13,10 +17,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ## Introdução
 
-A disciplina Data Science For All (Ciência de Dados para Todos), minitrada por Jorge Henrique Cabral Fernandes e
-Ricardo Barros Sampaio, do departamento de Ciência da Computação da Universidade de Brasília tem como foco integral a aplicação de ciência da dados como ferramenta eficiente de análise. 
+A disciplina Data Science For All (Ciência de Dados para Todos), minitrada por Jorge Henrique Cabral Fernandes e Ricardo Barros Sampaio, do departamento de Ciência da Computação da Universidade de Brasília tem como foco integral a aplicação de ciência da dados como ferramenta eficiente de análise. 
+
 O tema de estudo escolhido para realização da prática de ciência de dados foi o cenário atual da Pós-Graduação Brasileira, para que seus dados sejam processados e estudados com o objetivo de se retirar análises a respeito da qualidade, relevância, e produtividade dos programas de pós-graduação brasileiros.
+
  A fonte dos dados utilizados são dados disponíveis pela CAPES  (Coordenação de Aperfeiçoamento de Pessoal de Nível Superior). Órgão que já recolhe dados quantitativos e qualitativos sobre a pesquisa nacional, como currículos de professores e pesquisadores, além de avaliações recorrentes sobre os programas de pós-graduação a serem estudados.
+ 
 A interpretação e manipulação dos dados da CAPES adquiridos seguiram o modelo CRISP-DM, que guiará o projeto e será descrito ao longo do estudo.
 Sendo o cenário de pesquisa deste projeto a pós-graduação brasileira, foram escolhidos dois programas de pós-graduação como objetos de estudo, de onde serão extraídos seus dados. Serão estes:
 
@@ -26,8 +32,11 @@ Sendo o cenário de pesquisa deste projeto a pós-graduação brasileira, foram 
 
 ## O que é ciência?
 Ciência pode ser definida como uma investigação de fenômenos desconhecidos por meio de métodos, com o objetivo de buscar a explicação, estrutura e formar uma previsão do comportamento do que é observado. 
+
 Os métodos usados para a investigação devem estar em constante atualização, já que são baseados em um conjunto de princípios observados ao longo do tempo, e que não necessariamente estarão corretos para todas as situações ou que são imutáveis. Para uma obtenção fiel da análise proposta, os métodos devem ser cuidadosamente planejados.
+
 As investigações e os métodos são realizados por cientistas, por meio da produção científica, que se baseia em princípios como a projetização da ciência, racionalismo metodológico científico, empirismo científico, reprodutibilidade científica e uma comunidade científica. Como a análise de fenômenos e a consequente produção científica não possui restrições de acesso, o conhecimento é disseminado por toda a comunidade de modo que todos os interessados sejam capazes de analisar e aprimorar o conhecimento recebido.
+
 O método científico usado por cientistas é um conjunto de regras básicas que devem ser seguidas para o desenvolvimento de um padrão em que possa ser analisado o objeto de estudo de forma controlada. É composto pelos seguintes passos:
  
  * Observação: detecção de um fenômeno.
@@ -41,17 +50,26 @@ O método científico usado por cientistas é um conjunto de regras básicas que
  * Verificação: análise final de todos os itens levantados, reprodutividade do fenômeno e obtenção de provas.
 
 Como nem sempre todos os requisitos podem ser seguidos com total precisão, ou justamente devido a alguma falha na coleta ou formulação dos dados, a ciência não é dada como um fato absoluto. Porém, devido a seu rigor e ao avanço dos métodos e revisões, a ciência é considerada muito eficaz e precisa.
+
 Conclui-se assim que a ciência é essencial para o conhecimento humano, por estar em constante evolução, e reflete impactos em todas as áreas da sociedade através das produções científicas que exigem esforço intenso. Também sendo de suma importância na disseminação, verificação e comprovação de fenômenos e conhecimento pelo mundo.
 
 ## O que é ciência no Brasil?
 Ao falar em ciência no Brasil, podemos logo vinculá-la à CAPES - Coordenação de Aperfeiçoamento de Pessoal de Nível Superior. Esse órgão realiza a gestão dos programas de pós graduação stricto sensu que engloba mestrados e doutorados. Por gestão entende-se acesso a informação de produções científicas, investimentos de recursos, cooperação científica internacional e outras formas de coordenação relacionadas ao desenvolvimento científico brasileiro.
-As produções científicas no Brasil vem, de grande parte, dos programas de pós graduação. Esses programas são formados por cursos de mestrados e doutorados oferecidos por uma instituição de ensino superior. Vale ressaltar que os cursos oferecidos devem fazer parte das áreas de conhecimento atuantes na instituição de ensino superior. 
+
+As produções científicas no Brasil vem, de grande parte, dos programas de pós graduação. Esses programas são formados por cursos de mestrados e doutorados oferecidos por uma instituição de ensino superior. Vale ressaltar que os cursos oferecidos devem fazer parte das áreas de conhecimento atuantes na instituição de ensino superior.
+
 Os mestrados e doutorados podem ser divididos em acadêmicos ou profissionalizantes, ou seja, uma voltada para a área acadêmica e outra voltada para a área profissional. Esses programas visam, principalmente, à formação de professorado e incentivar a pesquisa científica de alto padrão para qualificar pesquisadores e cientistas em alto nível para fazer jus ao desenvolvimento nacional do Brasil.
+
 Para que os programas de pós graduação brasileiros mantenham um nível razoável de qualidade, são necessárias avaliações periódicas realizadas pelo Sistema Nacional de Pós-Graduação Brasileira para os programas já existentes. Já para novos programas, é necessário uma avaliação da proposta inicial do programa.
+
 A CAPES possui um sistema rigoroso de avaliação para os programas nacionais de pós graduação. São realizadas avaliações a cada 4 anos e notas de 1 a 7 são atribuídas aos programas. Notas 1 e 2 são consideradas baixas e portanto não atendem o requisito mínimo para que o programa consiga prosseguir com seu andamento. A nota 3 é considerada o padrão mínimo de qualidade, ou seja, uma nota regular. Já a nota 4 é considerado um bom desempenho. Para programas que possuem apenas mestrado,  a nota 5 é a maior nota. Por fim as notas 6 e 7 são consideradas altas e indicam desempenho equivalente a programas de pós graduação de excelência no exterior.
 
+\newpage
+
 ## O que é CRISP-DM:
+
 CRISP-DM (Cross-Industry Standard Process for Data Mining) é um modelo de análise de mineração de dados, feita de forma sistemática, sendo amplamente utilizada por ser flexível, podendo ser aplicada em qualquer negócio, e sua execução não ser dependente de ferramentas.
+
 As fases que compõem o CRISP-DM são as seguintes:
 
 1. **Entendimento do negócio**: Identificação das necessidades, objetivos e tipos de soluções do negócio, a fim de transformar a realidade do negócio em um problema de data mining.
@@ -86,20 +104,26 @@ As fases que compõem o CRISP-DM são as seguintes:
 
 6. **Implantação**: Inserção dos produtos desenvolvidos para uso, com um monitoramento regular, sendo feitas adaptações e ajustes quando necessários. Essa fase marca o fim da produção do projeto.
 
+\newpage
+
 As metodologias propostas pelo CRISP-DM estão apresentados no diagrama abaixo:
 \newline
 \newline
-\begin{figure}[h!]
+\begin{figure}[H]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{img/crisp_dm.png}
+\includegraphics[width=1\textwidth]{img/crisp_dm.png}
 \caption{Diagrama CRISP-DM}
 \end{center}
 \end{figure}
 
+\newpage
+
 ## Contexto dos programas de pós-graduação
 
 ### Programa de pós graduação em Ciência da Computação e Matemática Aplicada pela Universidade de São Paulo USP/São Carlos
+
 O programa de pós graduação em Ciência da Computação e Matemática Aplicada está organizado em 5 linhas de pesquisa sendo elas: 
+
  * Computação Gráfica, Imagens e Visualização
  * Engenharia de Software e Sistemas de Informação/Sistemas Web e Multimídia Interativos
  * Inteligência Computacional
@@ -108,7 +132,9 @@ O programa de pós graduação em Ciência da Computação e Matemática Aplicad
 
 As disciplinas ofertadas para os discentes englobam as principais áreas da Ciência da Computação. Já seu corpo docente é de alto nível, contendo professores formados em ótimas universidades no Brasil e no exterior.  
 
-O programa conta como modalidades o mestrado e o doutorado acadêmico, tendo em vista formar pesquisadores e professores na área. O curso é muito bem avaliado e recebeu a nota 7 (máxima) na avaliação trienal da CAPES. Para tanto, o curso foi avaliado como tendo: uma excelente qualificação e inserção internacional dos docentes; dissertações e teses defendidas de ótima qualidade; Ótima produção bibliográfica; e uma gama de atividades de cooperação internacional
+O programa conta como modalidades o mestrado e o doutorado acadêmico, tendo em vista formar pesquisadores e professores na área. O curso é muito bem avaliado e recebeu a nota 7 (máxima) na avaliação trienal da CAPES. Para tanto, o curso foi avaliado como tendo: uma excelente qualificação e inserção internacional dos docentes; dissertações e teses defendidas de ótima qualidade; Ótima produção bibliográfica; e uma gama de atividades de cooperação internacional.
+
+Table: Dados do programa de pós em Ciência da Computação e Matemática Aplicada (USP/SC)
 
  | 
 ------------- | -------------
@@ -119,8 +145,8 @@ Financiadores        | 5
 Linhas de Pesquisa   | 5
 Projetos de Pesquisa | 88
 
-
 ### Programa de pós graduação em Computação Aplicada pela Universidade de São Paulo USP/RP
+
 O programa de pós graduação em computação aplicada possui como modalidade, apenas, o mestrado acadêmico e contempla duas linhas de pesquisa, sendo elas: Computação aplicada à Biociências e Sistemas Computacionais Complexos. 
 
 As disciplinas ofertadas pelo programa abrangem as três áreas da Ciência da Computação, sendo elas:
@@ -130,8 +156,14 @@ As disciplinas ofertadas pelo programa abrangem as três áreas da Ciência da C
  * Sistemas de Computação
 
 O programa, apesar de recente, conta com um corpo docente experiente onde cada docente possui, pelo menos uma, orientação de mestrado e a maioria possui pelo menos uma orientação de doutorado concluída. Apesar disso, o programa conta com poucos docentes com dedicação exclusiva para o programa, o que é considerado um ponto em que o programa deixa a desejar.
+
 Na última avaliação trienal CAPES, o programa recebeu nota 3. Tal nota foi justificada principalmente pela falta de docentes com dedicação exclusiva, também foi ponderado a falta de disciplinas que fazem com que o discente não garanta aproveitamento em cada uma das áreas do núcleo básico da ciência da computação.
+
 Por ser um programa de pós graduação muito novo, ainda não há publicações discentes e portanto não existe uma maneira de qualificar as produções científicas.
+
+\newpage
+
+Table: Dados do programa de pós em Computação Aplicada (USP/RP)
 
  |  
 -------------        | -------------
@@ -146,7 +178,7 @@ Projetos de Pesquisa |15
 
 Para a coleta de dados dos programas de graduação citados acima, utilizamos a plataforma elattes UnB (http://unb.elattes.com.br). Por meio dessa plataforma, obtivemos os dados de 2014 até 2018 das publicações científicas, dos docentes afiliados e sobre as orientações de cada programa de pós-graduação. Com auxilio da linguagem R, utilizamos scripts que nos permitiram interpretar os dados coletados.
 
-### Computação Aplicada
+### Computação Aplicada (USP/SC)
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, results="hide"}
 library(tidyverse); library(jsonlite); library(listviewer);
@@ -185,84 +217,93 @@ orient_sum <- group_by(orient.df, ano, natureza) %>%
 orient_p_sum <- group_by(orient_p.df, ano, natureza) %>%
   summarise(n = n())
 ```
+
 O gráfico abaixo nos apresenta números a respeito dos tipos de orientação concluídos em função dos anos. Podemos observar um significativo aumento nas orientações de mestrado concluídas no ano de 2018. Como o programa de pós-graduação em Computação Aplicada se iniciou no final 2015 - e sabendo que um mestrado tem duração média de 2 anos - podemos concluir que ocorreram 10 orientações concluídas de mestrado nesse período. Vale ressaltar que essas orientações são a soma de todos os programas de pós-graduação em que os docentes fazem parte. 
+
 Também, observamos a veracidade do fato de que existem docentes que não tem dedicação exclusiva com o programa de pós-graduação analisado. Isso pode ser observado no alto número de supervisões de pós-doutorado e de doutorado em 2017.
-\newline
-\newline
-\newline
-```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center', fig.cap = 'Natureza das supervisões concluídos', fig.pos = 'H', fig.height=4, fig.width=8} 
 ggplot(orient_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
   geom_line(alpha = 0.6) +
   geom_point(alpha = 0.6) +
-  xlab("Ano") + ylab("Quantidade") + labs(title = "Natureza das supervisões concluídos")
+  xlab("Ano") + ylab("Quantidade")
 ```
+
 \newpage
+
 O gráfico abaixo nos apresenta números a respeito dos tipos de orientação não concluídos em função dos anos. Podemos observar um significativo aumento nas orientações de mestrado não concluídas no ano de 2017. Isso pode nos indicar que o programa de pós-graduação possui relevância por parte dos docentes que fazem parte desse programa.
-\newline
-```{r echo=FALSE, warning=FALSE, message=FALSE,fig.align='center'}
+
+```{r echo=FALSE, warning=FALSE, message=FALSE,fig.align='center', fig.cap = "Natureza das supervisões em andamento", fig.pos = 'H'}
 ggplot(orient_p_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
     geom_line(alpha = 0.6) +
     geom_point(alpha = 0.6) +
-    xlab("Ano") + ylab("Quantidade") + labs(title = "Natureza das supervisões em andamento")
+    xlab("Ano") + ylab("Quantidade")
 ```
-\newpage
-Com o gráfico abaixo, observamos que a maioria dos docentes do programa de pós-graduação participou de eventos internacionais e, também, em 126 eventos pelo Brasil. Embora a maioria dos eventos atentidos pelos docentes serem no Brasil, observa-se um bom número de presenças em eventos internacionais principalmente nos Estados Unidos. 
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=5}
+
+Com o gráfico abaixo, observamos que a maioria dos docentes do programa de pós-graduação participou de eventos internacionais e, também, em 126 eventos pelo Brasil. Embora a maioria dos eventos atentidos pelos docentes serem no Brasil, observa-se um bom número de presenças em eventos internacionais principalmente nos Estados Unidos.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=5, fig.cap="Eventos internacionais comparecidos por docentes", fig.pos = 'H'}
 # extrai producao bibliografica de todos os professores 
 pr.df.pub <- extrai.producoes(profile)
 #Eventos por país
 pr.df.pub %>%
   filter(tipo_producao == 'EVENTO' & pais_do_evento != "Brasil") %>%
   group_by(pais_do_evento) %>%
-  ggplot(aes(x = ano_do_trabalho, y = factor(pais_do_evento), color = factor(pais_do_evento))) + geom_jitter(width = 0.25) + xlab("Ano") + ylab("País do evento") + labs(title = "Eventos internacionais comparecidos por docentes", color = "Países")
+  ggplot(aes(x = ano_do_trabalho, y = factor(pais_do_evento), color = factor(pais_do_evento)), caption = "Figure 3") + geom_jitter(width = 0.25) + xlab("Ano") + ylab("País do evento") + labs(color = "Países")
 ```
-\newpage
 
-Com as análises abaixo, percebemos uma leve queda, com o passar dos anos, nos números de publicações em eventos e em periódicos. Essa queda foi relativamente expressiva quando comparado ao ano de 2014 - que foi o período de início das análises -.
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3}
+
+Com as análises abaixo, percebemos uma leve queda, com o passar dos anos, nos números de publicações em eventos e em periódicos. Essa queda foi relativamente expressiva quando comparado ao ano de 2014 - que foi o período de início das análises.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3, fig.cap = "Quantidade de publicações em eventos por ano", fig.pos = 'H'}
 # Número de produções em eventos por ano
 pr.df.pub %>%
   filter(tipo_producao == 'EVENTO') %>%
   group_by(ano_do_trabalho) %>% summarize(n = n()) %>%
   ggplot(aes(x = ano_do_trabalho, y = n, label = n)) +
   geom_bar(fill = '#1287F6', stat = "identity") +
-  xlab("Ano") + ylab("Quantidade de publicações") + labs(title = "Quantidade de publicações em eventos por ano") + 
+  xlab("Ano") + ylab("Quantidade de publicações") + 
   geom_text(hjust = 0.5, vjust=2.5)
 ``` 
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3}
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3, fig.cap = "Quantidade de publicações em periódicos por ano", fig.pos = 'H'}
 # Número de produções em periodicos por ano
   pr.df.pub %>%
   filter(tipo_producao == 'PERIODICO') %>%
   group_by(ano) %>% summarize(n = n()) %>%
   ggplot(aes(x = ano, y = n, label = n)) +
   geom_bar(fill = '#1287F6', stat = "identity") +
-  xlab("Ano") + ylab("Quantidade de publicações") + labs(title = "Quantidade de publicações em periódicos por ano") + 
+  xlab("Ano") + ylab("Quantidade de publicações") + 
   geom_text(hjust = 0.5, vjust=2.5)
   
   pr.df.areas <- extrai.areas.atuacao(profile)
 ```
 
 Abaixo, podemos notar que grande parte dos docentes desse programa possuem como grande área a de Ciências Exatas e da Terra seguido por Engenharias. Esse fato nos mostra que as grandes áreas dos pesquisadores envolvidos no programa estão condizentes com a proposta do programa de pós-graduação.
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3}
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3, fig.cap = "Quantidade de docentes por Grande Área", fig.pos = 'H'}
 # Area de atuação grande area:
   pr.df.areas %>%
   group_by(grande_area) %>% summarize(n = n()) %>%
   ggplot(aes(x = grande_area, y = n, label = n)) +
-  geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Grande Áreas") + ylab("Quantidade de docentes") + labs(title = "Quantidade de docentes por área") + 
+  geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Grande Áreas") + ylab("Quantidade de docentes") + 
   geom_text(hjust = 0, vjust=0.5)
 ```
 
+\newpage
+
 Também podemos notar que é predominante a existência de pesquisadores nas áreas ligadas a exatas e a tecnologia.
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3}  
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3, fig.cap = "Quantidade de docentes por Área", fig.pos = 'H'}  
 # Area de atuação area:
 pr.df.areas %>%
 group_by(area) %>% summarize(n = n()) %>%
   ggplot(aes(x = area, y = n, label = n)) +
-  geom_bar( fill = '#1287F6', stat = "identity") + coord_flip() + coord_flip() + xlab("Áreas") + ylab("Quantidade de docentes") + labs(title = "Quantidade de docentes por área") + 
+  geom_bar( fill = '#1287F6', stat = "identity") + coord_flip() + coord_flip() + xlab("Áreas") + ylab("Quantidade de docentes") +
   geom_text(hjust =-0.1, vjust=0.5)
 ```
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.cap = "Especialidade dos docentes", fig.pos = 'H'}
 # Area de atuação especialidade:
   pr.df.areas %>%
   filter(especialidade != '') %>%
@@ -270,28 +311,33 @@ group_by(area) %>% summarize(n = n()) %>%
   ggplot() +
   geom_bar(mapping = aes(x = especialidade, y = n), fill = '#1287F6', stat = "identity") + coord_flip()
 ```
+
 \newpage
-Por fim, com as análises abaixo, podemos notar a entrada de algumas empresas privadas financiadoras de importância no ano de 2018, como a Intel e a Algar Telecom, em orientações de pós-graduação não concluídas. 
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=10, fig.height=3} 
+
+Por fim, com as análises abaixo, podemos notar a entrada de algumas empresas privadas financiadoras de importância no ano de 2018, como a Intel e a Algar Telecom, em orientações de pós-graduação não concluídas.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=10, fig.height=3, fig.cap = "Financiamento de Orientações concluidas de pós-graduação", fig.pos = 'H'} 
 # Financiamento de Orientações concluidas de pós-graduação:
 orient.df %>%
   filter(agencia_financiadora != '') %>%
   group_by(agencia_financiadora) %>% summarize(n = n()) %>%
-  ggplot(aes(x = agencia_financiadora, y = n,label = n)) + geom_bar( fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Quantidade") + ylab("Empresa Financiadora") + labs(title = "Financiamento de Orientações concluidas de pós-graduação")+ 
+  ggplot(aes(x = agencia_financiadora, y = n,label = n)) + geom_bar( fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Quantidade") + ylab("Empresa Financiadora") +
   geom_text(hjust =-0.1, vjust=0.5)
 ```
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=10, fig.height=3}
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=10, fig.height=3, fig.cap = "Financiamento de Orientações em andamento de pós-graduação do ano de 2018", fig.pos = 'H'}
 # Financiamento de Orientações em andamento de pós-graduação do ano de 2018:
 orient_p.df %>%
   filter(agencia_financiadora != '' & ano == 2018) %>%
   group_by(agencia_financiadora) %>% summarize(n = n()) %>%
-  ggplot(aes(x = agencia_financiadora, y = n, label = n)) + geom_bar(fill = '#1287F6', stat = "identity") + coord_flip()+ xlab("Quantidade") + ylab("Empresa Financiadora") + labs(title = "Financiamento de Orientações em andamento de pós-graduação do ano de 2018")+ 
+  ggplot(aes(x = agencia_financiadora, y = n, label = n)) + geom_bar(fill = '#1287F6', stat = "identity") + coord_flip()+ xlab("Quantidade") + ylab("Empresa Financiadora") + 
   geom_text(hjust =-0.1, vjust=0.5)
 ```
 
 \newpage
-### Ciência da Computação e Matemática Aplicada
+
+### Ciência da Computação e Matemática Aplicada (USP/SC)
+
 ```{r echo=FALSE, warning=FALSE, message=FALSE, results="hide"}
 library(tidyverse); library(jsonlite); library(listviewer);
 
@@ -329,83 +375,91 @@ orient_sum <- group_by(orient.df, ano, natureza) %>%
 orient_p_sum <- group_by(orient_p.df, ano, natureza) %>%
   summarise(n = n())
 ```
+
 O gráfico abaixo nos apresenta números a respeito dos tipos de orientação concluídas em função dos anos. Podemos observar uma significativa queda nas orientações de mestrados concluídas no ano de 2017.Em contrapartida, temos um aumento significativo nas orientações concluídas de doutorados. Curiosamente, no ano de 2018, os números de orientações concluídas de doutorado e mestrado se aproximam bastante. Vale ressaltar que essas orientações são a soma de todos os programas de pós-graduação em que os docentes fazem parte. 
-\newline
-\newline
-\newline
-```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=6, fig.height=4, fig.align='center'}
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=6, fig.height=4, fig.align='center', fig.cap = "Natureza das supervisões concluídos", fig.pos = 'H'}
 ggplot(orient_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
   geom_line(alpha = 0.6) +
   geom_point(alpha = 0.6) +
-  xlab("Ano") + ylab("Quantidade") + labs(title = "Natureza das supervisões concluídos")
+  xlab("Ano") + ylab("Quantidade")
 ```
+
 \newpage
+
 O gráfico abaixo nos apresenta números a respeito dos tipos de orientação não concluídos em função dos anos. Podemos observar um significativo aumento, a cada ano, nas orientações de mestrado não concluídas, chegando a seu maior valor do periodo em 2018. Com sua maior variação ocorrendo em 2017. Em contrapartida, no período de 2017 a 2018, observa-se uma grande queda nas teses de doutorado.   
-\newline
-```{r echo=FALSE, warning=FALSE, message=FALSE,fig.align='center'}
+
+```{r echo=FALSE, warning=FALSE, message=FALSE,fig.align='center', fig.cap = "Natureza das supervisões em andamento", fig.pos = 'H'}
 ggplot(orient_p_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
     geom_line(alpha = 0.6) +
     geom_point(alpha = 0.6) +
-    xlab("Ano") + ylab("Quantidade") + labs(title = "Natureza das supervisões em andamento")
+    xlab("Ano") + ylab("Quantidade")
 ```
-\newpage
+
+
 Com o gráfico abaixo, observamos que a maioria dos docentes do programa de pós-graduação participou de eventos internacionais. Embora a maioria dos eventos atentidos pelos docentes serem no Brasil, observa-se um grande número de presenças em eventos internacionais principalmente nos Estados Unidos.
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=5}
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=5, fig.cap = "Eventos internacionais comparecidos por docentes", fig.pos = 'H'}
 # extrai producao bibliografica de todos os professores 
 pr.df.pub <- extrai.producoes(profile)
 #Eventos por país
 pr.df.pub %>%
   filter(tipo_producao == 'EVENTO' & pais_do_evento != "Brasil") %>%
   group_by(pais_do_evento) %>%
-  ggplot(aes(x = ano_do_trabalho, y = factor(pais_do_evento), color = factor(pais_do_evento))) + geom_jitter(width = 0.25) + xlab("Ano") + ylab("País do evento") + labs(title = "Eventos internacionais comparecidos por docentes", color = "Países")
+  ggplot(aes(x = ano_do_trabalho, y = factor(pais_do_evento), color = factor(pais_do_evento))) + geom_jitter(width = 0.25) + xlab("Ano") + ylab("País do evento") + labs(color = "Países")
 ```
-\newpage
+
 
 Com as análises abaixo, percebemos uma leve queda, com o passar dos anos, nos números de publicações em eventos. Essa queda foi relativamente expressiva quando comparado ao ano de 2014 - que foi o período de início das análises -. Já o número de publicações em eventos por ano apenas oscilou decrescentemente com o decorrer dos anos.
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3}
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3, fig.cap = "Quantidade de publicações em eventos por ano", fig.pos = 'H'}
 # Número de produções em eventos por ano
 pr.df.pub %>%
   filter(tipo_producao == 'EVENTO') %>%
   group_by(ano_do_trabalho) %>% summarize(n = n()) %>%
   ggplot(aes(x = ano_do_trabalho, y = n, label = n)) +
   geom_bar(fill = '#1287F6', stat = "identity") +
-  xlab("Ano") + ylab("Quantidade de publicações") + labs(title = "Quantidade de publicações em eventos por ano") + 
+  xlab("Ano") + ylab("Quantidade de publicações") +
   geom_text(hjust =0.5, vjust=2.5)
 ``` 
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3}
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3, fig.cap = "Quantidade de publicações em periódicos por ano", fig.pos = 'H'}
 # Número de produções em periodicos por ano
   pr.df.pub %>%
   filter(tipo_producao == 'PERIODICO') %>%
   group_by(ano) %>% summarize(n = n()) %>%
   ggplot(aes(x = ano, y = n, label = n)) +
   geom_bar( fill = '#1287F6', stat = "identity") +
-  xlab("Ano") + ylab("Quantidade de publicações") + labs(title = "Quantidade de publicações em periódicos por ano") + 
+  xlab("Ano") + ylab("Quantidade de publicações") +  
   geom_text(hjust =0.5, vjust=2.5)
   
   pr.df.areas <- extrai.areas.atuacao(profile)
 ```
-\newpage
+
+
 Abaixo, podemos notar que grande parte dos docentes desse programa possuem como grande área a de Ciências Exatas e da Terra seguido por Engenharias. Esse fato nos mostra que as grandes áreas dos pesquisadores envolvidos no programa estão condizentes com a proposta do programa de pós-graduação.
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3}
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3, fig.cap = "Quantidade de docentes por Grande Área", fig.pos = 'H'}
 # Area de atuação grande area:
   pr.df.areas %>%
   group_by(grande_area) %>% summarize(n = n()) %>%
   ggplot(aes(x = grande_area, y = n, label = n)) +
-  geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Grande Áreas") + ylab("Quantidade de docentes") + labs(title = "Quantidade de docentes por área") + 
+  geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Grande Áreas") + ylab("Quantidade de docentes") + 
   geom_text(hjust =-0.1, vjust=0.5)
 ```
 
 Também podemos notar que é predominante a existência de pesquisadores nas áreas ligadas a exatas e a tecnologia. Nota-se, também, uma grande pluraridade de áreas, incluindo áreas das ciências humanas e da saúde. 
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3}  
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3, fig.cap = "Quantidade de docentes por Área", fig.pos = 'H'}  
 # Area de atuação area:
 pr.df.areas %>%
 group_by(area) %>% summarize(n = n()) %>%
   ggplot(aes(x = area, y = n, label = n)) +
-  geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + coord_flip() + xlab("Áreas") + ylab("Quantidade de docentes") + labs(title = "Quantidade de docentes por área") + 
+  geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + coord_flip() + xlab("Áreas") + ylab("Quantidade de docentes") + 
   geom_text(hjust =-0.1, vjust=0.5)
 ```
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=10}
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=10, fig.cap = "Quantidade de docentes por especialidade", fig.pos = 'H'}
 # Area de atuação especialidade:
   pr.df.areas %>%
   filter(especialidade != '') %>%
@@ -413,36 +467,41 @@ group_by(area) %>% summarize(n = n()) %>%
   arrange(desc(n)) %>%
   head(n=10)%>%
   ggplot(aes(x = especialidade, y = n, label = n)) +
-  geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Quantidade") + ylab("Especialidade") + labs(title = "Quantidade de docentes por especialidade (10 maiores)") + 
+  geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Quantidade") + ylab("Especialidade") + 
   geom_text(hjust =-0.1, vjust=0.5)
 ```
+
 \newpage
+
 Por fim, com as análises abaixo, podemos notar a entrada de algumas empresas privadas financiadoras de importância no ano de 2018, como a Intel e a Algar Telecom, em orientações de pós-graduação não concluídas.É evidente a importância dos docentes desse programa de pós-graduação, pois existem investimentos de grandes empresas internacionais como a Google, Samsung e até mesmo a União Europeia. Ainda assim, é notório a grande participação no investimento público do Governo Federal e do Governo do Estado de São Paulo.
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=10, fig.height=3} 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=10, fig.height=3, fig.cap = "Financiamento de Orientações concluídas de pós-graduação do ano de 2018", fig.pos = 'H'} 
 # Financiamento de Orientações concluidas de pós-graduação:
 orient.df %>%
   filter(agencia_financiadora != '') %>%
   group_by(agencia_financiadora) %>% summarize(n = n()) %>%
-  ggplot(aes(x = agencia_financiadora, y = n, label = n)) + geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Empresa Financiadora") + ylab("Quantidade") + labs(title = "Financiamento de Orientações concluídas de pós-graduação do ano de 2018") + 
+  ggplot(aes(x = agencia_financiadora, y = n, label = n)) + geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Empresa Financiadora") + ylab("Quantidade") + 
   geom_text(hjust =-0.1, vjust=0.5)
 ```
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=10, fig.height=3}
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=10, fig.height=3, fig.cap = "Financiamento de Orientações em andamento de pós-graduação do ano de 2018", fig.pos = 'H'}
 # Financiamento de Orientações em andamento de pós-graduação do ano de 2018:
 orient_p.df %>%
   filter(agencia_financiadora != '' & ano == 2018) %>%
   group_by(agencia_financiadora) %>% summarize(n = n()) %>%
-  ggplot(aes(x = agencia_financiadora, y = n, label = n)) + geom_bar(fill = '#1287F6', stat = "identity") + coord_flip()+ xlab("Empresa Financiadora") + ylab("Quantidade") + labs(title = "Financiamento de Orientações em andamento de pós-graduação do ano de 2018") + 
+  ggplot(aes(x = agencia_financiadora, y = n, label = n)) + geom_bar(fill = '#1287F6', stat = "identity") + coord_flip()+ xlab("Empresa Financiadora") + ylab("Quantidade") + 
   geom_text(hjust =-0.1, vjust=0.5)
 ```
+
+\newpage
 
 ## Mineração de texto
 
 A coleta de dados realizada para a produção das nuvens de palavras foi feita utilizando os títulos de publicações em periódicos de cada programa de pós graduação estudado. Para refinar essa análise, utilizamos alguns filtros para remover conectivos, pontuações e palavras indesejadas.
 
- * Computação aplicada
+ * Computação aplicada (USP/RP)
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center'}
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.cap = "Nuvem de palavras - Computação Aplicada (USP/RP)", fig.pos = 'H'}
 # Worcloud de computação aplicada
 library("tm")
 library("SnowballC")
@@ -490,9 +549,11 @@ wordcloud(words = d$word, freq = d$freq, min.freq = 4,
           colors=brewer.pal(8, "Dark2"))
 ```
 
- * Ciência da computação e matemática aplicada
+\newpage
+
+ * Ciência da computação e matemática aplicada (USP/SC)
  
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center'}
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.cap = "Nuvem de palavras de Ciência da Computação e Matemática Aplicada (USP/SC)", fig.pos = 'H'}
 
 #Ler o arquivo publication
 public <- jsonlite::fromJSON("cic/publication.json")
@@ -531,6 +592,7 @@ wordcloud(words = d$word, freq = d$freq, min.freq = 11,
           colors=brewer.pal(8, "Dark2"))
 
 ```
+\newpage
 
 ## Análise de Redes
 
@@ -546,7 +608,7 @@ Para cada programas de pós graduação, foram feitos três grafos para essa an�
  
 Seguem os grafos obtidos:
 
- * Computação aplicada
+ * Computação aplicada (USP/RP)
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center'}
 
@@ -566,7 +628,7 @@ colnames(reference_table) <- c(
     "Index",
     "Docente")
 
-kable(reference_table[,c(2,1,3)])
+kable(reference_table[,c(2,1,3)], caption = "Tabela de referência da análise de redes - Computação aplicada (USP/RP)")
 #Cria arquivo com quantitativo de dados para adicionar ao grafo
 #Arquivo Profile por Currículo
 # extrai perfis dos professores 
@@ -633,15 +695,18 @@ write.graph(g, "graph.lattes.graphml", format = "graphml")
 
 #fc <- colorRampPalette(c("red","orange"),method="linear")
 #colors <- fc(max(V(g)$publicacao, na.rm = TRUE))
+```
 
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.cap = "Grafo de colaboração por quantidade de relações - Computação Aplicada (USP/RP)", fig.pos = 'H'}
 plot(g, 
      vertex.size = V(g)$degree*1.5,
      # vertex.color = colors[V(g)$publicacao + 1],
      vertex.label = graph$nodes$label,
      layout = layout_nicely(g),
      vertex.label.cex = 0.6)
+```
 
-
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.cap = "Grafo de colaboração por quantidade de publicações - Computação Aplicada (USP/RP)", fig.pos = 'H'}
 plot(g, 
      vertex.size = na.omit(round(V(g)$publicacao/7)*3),
      # vertex.color = colors[V(g)$publicacao + 1],
@@ -656,12 +721,14 @@ kc = fastgreedy.community(g)
 
 # Determine which individuals belong to which community
 #membership(kc)
+```
 
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.cap = "Comunidades geradas pelas colaborações - Computação Aplicada (USP/RP)", fig.pos = 'H'}
 # Plot the community structure of the network
 plot(kc, g, vertex.label = graph$nodes$label, layout = layout_nicely(g))
 ```
 
- * Ciência da computação e matemática aplicada
+ * Ciência da computação e matemática aplicada (USP/SC)
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center'}
 
@@ -674,7 +741,7 @@ colnames(reference_table) <- c(
     "IdLattes",
     "Index",
     "Docente")
-kable(reference_table[,c(2,1,3)])
+kable(reference_table[,c(2,1,3)], caption = "Tabela de referência da análise de redes - Ciência da computação e matemática aplicada (USP/SC)")
 #Cria arquivo com quantitativo de dados para adicionar ao grafo
 #Arquivo Profile por Currículo
 # extrai perfis dos professores 
@@ -741,15 +808,18 @@ write.graph(g, "graph.lattes.graphml", format = "graphml")
 
 #fc <- colorRampPalette(c("red","orange"),method="linear")
 #colors <- fc(max(V(g)$publicacao, na.rm = TRUE))
+```
 
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.cap = "Grafo de colaboração por quantidade de relações - Ciência da Computação e Matemática Aplicada (USP/SC)", fig.pos = 'H'}
 plot(g, 
      vertex.size = (V(g)$degree+1)*6,
      # vertex.color = colors[V(g)$publicacao + 1],
      vertex.label = graph$nodes$label,
      layout = layout_nicely(g),
      vertex.label.cex = 0.6)
+```
 
-
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center',  fig.cap = "Grafo de colaboração por quantidade de publicações - Ciência da Computação e Matemática Aplicada (USP/SC)", fig.pos = 'H'}
 plot(g, 
      vertex.size = na.omit(round(V(g)$publicacao+2)),
      # vertex.color = colors[V(g)$publicacao + 1],
@@ -764,18 +834,36 @@ kc = fastgreedy.community(g)
 
 # Determine which individuals belong to which community
 #membership(kc)
+```
 
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.cap = "Comunidades geradas pelas colaborações - Ciência da Computação e Matemática Aplicada (USP/SC)", fig.pos = 'H'}
 # Plot the community structure of the network
 plot(kc, g, vertex.label = graph$nodes$label, layout = layout_nicely(g))
 
 ```
 
+\newpage
+
 ## Análise dos resultados
 
 Analisando as orientações concluídas do programa de pós-graduação podemos perceber uma ampla diferença, tanto na quantidade de docentes quanto na produção científica em si. O programa Ciência da Computação e Matemática Aplicada, além de mais antigo, possui um número significativo de dicentes, consequentemente, maior participação internacional, observando um foco nos Estados Unidos - juntamente no programa de pós-graduação de Computação Aplicada -, e também em diversos países da Ásia e Europa. Além disso, observamos um maior número de grandes empresas financiadoras, em comparação ao programa de pós-graduação de Computação Aplicada.
+
+Pelas nuvens de palavras geradas é possível observar que existem certas similaridades entre os temas tratados em cada programa de pós graduação. Nota-se que as palavras network e data são amplamente utilizadas nos periódicos produzidos pelos docentes. Esse fato é esperado, visto que existe certa similaridade entre os principais campos de estudo abordados entre os programas estudados nesse relatório.
+
+Com as redes geradas, observamos certos comportamentos curiosos. Existem docentes que possuem um alto numero de publicações, porém esses mesmos docentes não possuem muitas conexões entre eles. Exemplificando, o docente André Carlos Ponce de Leon Ferreira de Carvalho do programa de pós gradução Ciência da computação e matemática aplicada, possui poucas conexões, porém quando observamos o grafo de quantidade de publicações, verifica-se um grande número de publicações para esse mesmo docente.
+
 Todos essas observações comprovam as disparidades entre os programas, justificando uma nota 7 no programa Ciência da Computação e Matemática Aplicada e 3 no programa Computação Aplicada.
 
+## Conclusão
+
+Os programas de pós graduação de Computação aplicada (USP/RP) e de Ciência da computação e Matemática aplicada (USP/SC) possuem bastantes informações para análise, e as suas semelhanças e diferenças são observadas ao filtrar os dados e ao gerar os gráficos. Como a pesquisa a respeito dos resultados desses programas é a manipulação e o estudo de big data, a ciência de dados foi tido como recurso ideal para filtrar as informações essenciais da massa de dados e fornecer o meio de predições e decisões necessárias.
+
+Para obter um bom resultado nas análises, foram utilizadas as metodologias do CRISP-DM, técnicas de mineração e manipulação de dados em R e análise crítica das melhores formas de gerar os gráficos de acordo com os tipos de dados.
+
+Por fim, as análises obtidas foram satisfatórias para o conjunto de dados, e os resultados são coerentes ao comparar as pontuações de avaliação quadrienal, que colocam o programa Ciência da computação e Matemática aplicada (USP/SC) como um programa nota 7 que possui um alto número de publicações, e também consegue justificar o programa Computação aplicada (USP/RP)  com nota 3 por ser um programa recente, e ainda não possuir tantas publicações.
+
 \newpage
+
 ## Referências
 
 [1] Jorge Henrique Cabral Fernandes, Ricardo Barros Sampaio. Unb Aprender, 2019. Sobre a Ciência e sua Avaliação. 
