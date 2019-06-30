@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ## Introdução
 
-A disciplina Data Science For All (Ciência de Dados para Todos), minitrada por Jorge Henrique Cabral Fernandes e Ricardo Barros Sampaio, do departamento de Ciência da Computação da Universidade de Brasília tem como foco integral a aplicação de ciência da dados como ferramenta eficiente de análise. 
+A disciplina Data Science For All (Ciência de Dados para Todos), ministrada por Jorge Henrique Cabral Fernandes e Ricardo Barros Sampaio, do departamento de Ciência da Computação da Universidade de Brasília tem como foco integral a aplicação de ciência da dados como ferramenta eficiente de análise. 
 
 O tema de estudo escolhido para realização da prática de ciência de dados foi o cenário atual da Pós-Graduação Brasileira, para que seus dados sejam processados e estudados com o objetivo de se retirar análises a respeito da qualidade, relevância, e produtividade dos programas de pós-graduação brasileiros.
 
@@ -239,7 +239,7 @@ ggplot(orient_p_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
     geom_point(alpha = 0.6) +
     xlab("Ano") + ylab("Quantidade")
 ```
-
+\newpage
 Com o gráfico abaixo, observamos que a maioria dos docentes do programa de pós-graduação participou de eventos internacionais e, também, em 126 eventos pelo Brasil. Embora a maioria dos eventos atentidos pelos docentes serem no Brasil, observa-se um bom número de presenças em eventos internacionais principalmente nos Estados Unidos.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=5, fig.cap="Eventos internacionais comparecidos por docentes", fig.pos = 'H'}
@@ -396,7 +396,7 @@ ggplot(orient_p_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
     xlab("Ano") + ylab("Quantidade")
 ```
 
-
+\newpage
 Com o gráfico abaixo, observamos que a maioria dos docentes do programa de pós-graduação participou de eventos internacionais. Embora a maioria dos eventos atentidos pelos docentes serem no Brasil, observa-se um grande número de presenças em eventos internacionais principalmente nos Estados Unidos.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=5, fig.cap = "Eventos internacionais comparecidos por docentes", fig.pos = 'H'}
@@ -852,7 +852,7 @@ Pelas nuvens de palavras geradas é possível observar que existem certas simila
 
 Com as redes geradas, observamos certos comportamentos curiosos. Existem docentes que possuem um alto numero de publicações, porém esses mesmos docentes não possuem muitas conexões entre eles. Exemplificando, o docente André Carlos Ponce de Leon Ferreira de Carvalho do programa de pós gradução Ciência da computação e matemática aplicada, possui poucas conexões, porém quando observamos o grafo de quantidade de publicações, verifica-se um grande número de publicações para esse mesmo docente.
 
-Todos essas observações comprovam as disparidades entre os programas, justificando uma nota 7 no programa Ciência da Computação e Matemática Aplicada e 3 no programa Computação Aplicada.
+Todas essas observações comprovam as disparidades entre os programas, justificando uma nota 7 no programa Ciência da Computação e Matemática Aplicada e 3 no programa Computação Aplicada.
 
 ## Conclusão
 
