@@ -42,7 +42,7 @@
       <data key="v_degree">2</data>
       <data key="v_betweenness">0</data>
       <data key="v_closeness">0.089171974522293</data>
-      <data key="v_eigen">0.823506333857817</data>
+      <data key="v_eigen">0.823506333857818</data>
       <data key="v_cluster">1</data>
     </node>
     <node id="n2">
@@ -55,7 +55,7 @@
       <data key="v_degree">1</data>
       <data key="v_betweenness">0</data>
       <data key="v_closeness">0.0714285714285714</data>
-      <data key="v_eigen">4.67661609115961e-16</data>
+      <data key="v_eigen">1.04721295230768e-16</data>
       <data key="v_cluster">2</data>
     </node>
     <node id="n3">
@@ -68,7 +68,7 @@
       <data key="v_degree">3</data>
       <data key="v_betweenness">0.120879120879121</data>
       <data key="v_closeness">0.108527131782946</data>
-      <data key="v_eigen">1.67810598967037e-15</data>
+      <data key="v_eigen">4.91937920259533e-15</data>
       <data key="v_cluster">3</data>
     </node>
     <node id="n4">
@@ -81,7 +81,7 @@
       <data key="v_degree">2</data>
       <data key="v_betweenness">0.0549450549450549</data>
       <data key="v_closeness">0.106060606060606</data>
-      <data key="v_eigen">1.08042440430832e-15</data>
+      <data key="v_eigen">3.19529770635865e-15</data>
       <data key="v_cluster">3</data>
     </node>
     <node id="n5">
@@ -107,7 +107,7 @@
       <data key="v_degree">1</data>
       <data key="v_betweenness">0</data>
       <data key="v_closeness">0.103703703703704</data>
-      <data key="v_eigen">8.85028501401496e-16</data>
+      <data key="v_eigen">2.20682431518295e-15</data>
       <data key="v_cluster">5</data>
     </node>
     <node id="n7">
@@ -120,7 +120,7 @@
       <data key="v_degree">1</data>
       <data key="v_betweenness">0</data>
       <data key="v_closeness">0.0714285714285714</data>
-      <data key="v_eigen">4.5955427265657e-16</data>
+      <data key="v_eigen">0</data>
       <data key="v_cluster">2</data>
     </node>
     <node id="n8">
@@ -146,7 +146,7 @@
       <data key="v_degree">1</data>
       <data key="v_betweenness">0</data>
       <data key="v_closeness">0.104477611940299</data>
-      <data key="v_eigen">9.1951013132623e-16</data>
+      <data key="v_eigen">2.26429369839084e-15</data>
       <data key="v_cluster">3</data>
     </node>
     <node id="n10">
@@ -159,7 +159,7 @@
       <data key="v_degree">0</data>
       <data key="v_betweenness">0</data>
       <data key="v_closeness">0.0666666666666667</data>
-      <data key="v_eigen">0</data>
+      <data key="v_eigen">3.08499441463611e-16</data>
       <data key="v_cluster">4</data>
     </node>
     <node id="n11">
@@ -172,7 +172,7 @@
       <data key="v_degree">3</data>
       <data key="v_betweenness">0.0989010989010989</data>
       <data key="v_closeness">0.107692307692308</data>
-      <data key="v_eigen">1.63213048310406e-15</data>
+      <data key="v_eigen">4.39066087708275e-15</data>
       <data key="v_cluster">5</data>
     </node>
     <node id="n12">
@@ -198,7 +198,7 @@
       <data key="v_degree">1</data>
       <data key="v_betweenness">0</data>
       <data key="v_closeness">0.103703703703704</data>
-      <data key="v_eigen">8.50546871476763e-16</data>
+      <data key="v_eigen">2.26429369839084e-15</data>
       <data key="v_cluster">5</data>
     </node>
     <node id="n14">
@@ -211,7 +211,7 @@
       <data key="v_degree">1</data>
       <data key="v_betweenness">0</data>
       <data key="v_closeness">0.102189781021898</data>
-      <data key="v_eigen">5.63199955437316e-16</data>
+      <data key="v_eigen">1.45972233348039e-15</data>
       <data key="v_cluster">3</data>
     </node>
     <edge source="n0" target="n12">

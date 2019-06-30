@@ -436,6 +436,340 @@ orient_p.df %>%
   geom_text(hjust =-0.1, vjust=0.5)
 ```
 
+## Mineração de texto
+
+A coleta de dados realizada para a produção das nuvens de palavras foi feita utilizando os títulos de publicações em periódicos de cada programa de pós graduação estudado. Para refinar essa análise, utilizamos alguns filtros para remover conectivos, pontuações e palavras indesejadas.
+
+ * Computação aplicada
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center'}
+# Worcloud de computação aplicada
+library("tm")
+library("SnowballC")
+library("wordcloud")
+library("RColorBrewer")
+library("dplyr")
+#Ler o arquivo publication
+public <- jsonlite::fromJSON("comp_aplicada/publication.json")
+
+#Arquivo com funcionalidades que transformam o arquivo formato list em DataFrames
+source("scripts/elattes.ls2df.R")
+
+
+public.periodico.df <- pub.ls2df(public, 1) #artigos
+
+docs <- Corpus(VectorSource(public.periodico.df$titulo))
+toSpace <- content_transformer(function (x , pattern ) gsub(pattern, " ", x))
+docs <- tm_map(docs, toSpace, "/")
+docs <- tm_map(docs, toSpace, "@")
+docs <- tm_map(docs, toSpace, "\\|")
+
+# Convert the text to lower case
+docs <- tm_map(docs, content_transformer(tolower))
+# Remove numbers
+docs <- tm_map(docs, removeNumbers)
+# Remove english common stopwords
+docs <- tm_map(docs, removeWords, stopwords("english"))
+# Remove punctuations
+docs <- tm_map(docs, removePunctuation)
+# Eliminate extra white spaces
+docs <- tm_map(docs, stripWhitespace)
+
+# Remove your own stop word
+# specify your stopwords as a character vector
+docs <- tm_map(docs, removeWords, c("wwwelseviercom", "wwwworg", "dtdquot", "using", "via")) 
+
+dtm <- TermDocumentMatrix(docs)
+m <- as.matrix(dtm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+
+set.seed(1234)
+wordcloud(words = d$word, freq = d$freq, min.freq = 4,
+          max.words=200, random.order=FALSE, rot.per=0.35, 
+          colors=brewer.pal(8, "Dark2"))
+```
+
+ * Ciência da computação e matemática aplicada
+ 
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center'}
+
+#Ler o arquivo publication
+public <- jsonlite::fromJSON("cic/publication.json")
+
+public.periodico.df <- pub.ls2df(public, 1) #artigos
+
+docs <- Corpus(VectorSource(public.periodico.df$titulo))
+toSpace <- content_transformer(function (x , pattern ) gsub(pattern, " ", x))
+docs <- tm_map(docs, toSpace, "/")
+docs <- tm_map(docs, toSpace, "@")
+docs <- tm_map(docs, toSpace, "\\|")
+
+# Convert the text to lower case
+docs <- tm_map(docs, content_transformer(tolower))
+# Remove numbers
+docs <- tm_map(docs, removeNumbers)
+# Remove english common stopwords
+docs <- tm_map(docs, removeWords, stopwords("english"))
+# Remove punctuations
+docs <- tm_map(docs, removePunctuation)
+# Eliminate extra white spaces
+docs <- tm_map(docs, stripWhitespace)
+
+# Remove your own stop word
+# specify your stopwords as a character vector
+docs <- tm_map(docs, removeWords, c("using", "para"))
+
+dtm <- TermDocumentMatrix(docs)
+m <- as.matrix(dtm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+
+set.seed(1234)
+wordcloud(words = d$word, freq = d$freq, min.freq = 11,
+          max.words=200, random.order=FALSE, rot.per=0.35, 
+          colors=brewer.pal(8, "Dark2"))
+
+```
+
+## Análise de Redes
+
+A análise de redes é a monitorização de padrões entre nós de uma rede, com o fim de estabelecer uma estrutura que pode ser usada para rastrear possíveis relações de quantidade de comunicação e de agrupamentos. 
+
+Para cada programas de pós graduação, foram feitos três grafos para essa análise.
+
+ * O primeiro mostra o número de colaborações de cada autor pelo tamanho do nó relacionado a seu índex da tabela de autores.
+
+ * O segundo mostra o número de publicações de cada autor pelo tamanho do nó relacionado a seu índex da tabela de autores
+
+ * O terceiro mostra as comunidades entre os autores com agrupamentos no grafo por cores
+ 
+Seguem os grafos obtidos:
+
+ * Computação aplicada
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center'}
+
+#Leitura dos arquivos formato graph e análise dos dados
+library(igraph)
+library(knitr)
+#Arquivo com funcionalidades que transformam o arquivo formato list em DataFrames
+source("scripts/elattes.ls2df.R")
+
+#Ler o arquivo profile e transformar no formato igraph
+graph <- jsonlite::fromJSON("cic/graph.json")
+g <- g.ls2ig(graph)
+
+reference_table <- graph$nodes
+colnames(reference_table) <- c(
+    "IdLattes",
+    "Index",
+    "Docente")
+
+kable(reference_table[,c(2,1,3)])
+#Cria arquivo com quantitativo de dados para adicionar ao grafo
+#Arquivo Profile por Currículo
+# extrai perfis dos professores 
+profile <- jsonlite::fromJSON("cic/profile.json")
+perfil.df.professores <- extrai.perfis(profile)
+
+# extrai producao bibliografica de todos os professores 
+perfil.df.publicacoes <- extrai.producoes(profile)
+
+#extrai orientacoes 
+perfil.df.orientacoes <- extrai.orientacoes(profile)
+
+#extrai areas de atuacao 
+perfil.df.areas.de.atuacao <- extrai.areas.atuacao(profile)
+
+#cria arquivo com dados quantitativos para análise
+perfil.df <- data.frame()
+perfil.df <- perfil.df.professores %>% 
+  select(idLattes, nome, resumo_cv, senioridade) %>% 
+  left_join(
+    perfil.df.orientacoes %>% 
+      select(orientacao, idLattes) %>% 
+      filter(!grepl("EM_ANDAMENTO", orientacao)) %>% 
+      group_by(idLattes) %>% 
+      count(orientacao) %>% 
+      spread(key = orientacao, value = n), 
+    by = "idLattes") %>% 
+  left_join(
+    perfil.df.publicacoes %>% 
+      select(tipo_producao, idLattes) %>% 
+      filter(!grepl("ARTIGO_ACEITO", tipo_producao)) %>% 
+      group_by(idLattes) %>% 
+      count(tipo_producao) %>% 
+      spread(key = tipo_producao, value = n), 
+    by = "idLattes") %>% 
+  left_join(
+    perfil.df.areas.de.atuacao %>% 
+      select(area, idLattes) %>% 
+      group_by(idLattes) %>% 
+      summarise(n_distinct(area)), 
+    by = "idLattes")
+
+#Adicionando informações ao grafo
+V(g)$orient_dout <- perfil.df$ORIENTACAO_CONCLUIDA_DOUTORADO
+V(g)$orient_mest <- perfil.df$ORIENTACAO_CONCLUIDA_MESTRADO
+V(g)$publicacao <- perfil.df$PERIODICO
+V(g)$eventos <- perfil.df$EVENTO
+
+V(g)$degree <- degree(g)
+V(g)$betweenness <- betweenness(g, normalized = TRUE)
+V(g)$closeness <- closeness(g, normalized = TRUE)
+V(g)$eigen <- eigen_centrality(g)$vector
+V(g)$cluster <- cluster_leading_eigen(g)$membership
+
+#Escrever o grafo para leitura em outro software
+write.graph(g, "graph.lattes.graphml", format = "graphml")
+
+#Filtrando somente os pesquisadores com Grande Área Ciências Exatas e da Terra
+#sub.graph <- (perfil.df.areas.de.atuacao %>% 
+#                filter(grande_area == "CIENCIAS_EXATAS_E_DA_TERRA") %>% 
+#                select(idLattes) %>% unique())[,1]
+
+#g2 <- induced_subgraph(g, sub.graph)
+
+#fc <- colorRampPalette(c("red","orange"),method="linear")
+#colors <- fc(max(V(g)$publicacao, na.rm = TRUE))
+
+plot(g, 
+     vertex.size = V(g)$degree*1.5,
+     # vertex.color = colors[V(g)$publicacao + 1],
+     vertex.label = graph$nodes$label,
+     layout = layout_nicely(g),
+     vertex.label.cex = 0.6)
+
+
+plot(g, 
+     vertex.size = na.omit(round(V(g)$publicacao/7)*3),
+     # vertex.color = colors[V(g)$publicacao + 1],
+     vertex.label = graph$nodes$label,
+     layout = layout_nicely(g),
+     vertex.label.cex = 0.6)
+# Perform fast-greedy community detection on network graph
+kc = fastgreedy.community(g)
+
+# Determine sizes of each community
+#sizes(kc)
+
+# Determine which individuals belong to which community
+#membership(kc)
+
+# Plot the community structure of the network
+plot(kc, g, vertex.label = graph$nodes$label, layout = layout_nicely(g))
+```
+
+ * Ciência da computação e matemática aplicada
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center'}
+
+#Ler o arquivo profile e transformar no formato igraph
+graph <- jsonlite::fromJSON("comp_aplicada/graph.json")
+g <- g.ls2ig(graph)
+
+reference_table <- graph$nodes
+colnames(reference_table) <- c(
+    "IdLattes",
+    "Index",
+    "Docente")
+kable(reference_table[,c(2,1,3)])
+#Cria arquivo com quantitativo de dados para adicionar ao grafo
+#Arquivo Profile por Currículo
+# extrai perfis dos professores 
+profile <- jsonlite::fromJSON("comp_aplicada/profile.json")
+perfil.df.professores <- extrai.perfis(profile)
+
+# extrai producao bibliografica de todos os professores 
+perfil.df.publicacoes <- extrai.producoes(profile)
+
+#extrai orientacoes 
+perfil.df.orientacoes <- extrai.orientacoes(profile)
+
+#extrai areas de atuacao 
+perfil.df.areas.de.atuacao <- extrai.areas.atuacao(profile)
+
+#cria arquivo com dados quantitativos para análise
+perfil.df <- data.frame()
+perfil.df <- perfil.df.professores %>% 
+  select(idLattes, nome, resumo_cv, senioridade) %>% 
+  left_join(
+    perfil.df.orientacoes %>% 
+      select(orientacao, idLattes) %>% 
+      filter(!grepl("EM_ANDAMENTO", orientacao)) %>% 
+      group_by(idLattes) %>% 
+      count(orientacao) %>% 
+      spread(key = orientacao, value = n), 
+    by = "idLattes") %>% 
+  left_join(
+    perfil.df.publicacoes %>% 
+      select(tipo_producao, idLattes) %>% 
+      filter(!grepl("ARTIGO_ACEITO", tipo_producao)) %>% 
+      group_by(idLattes) %>% 
+      count(tipo_producao) %>% 
+      spread(key = tipo_producao, value = n), 
+    by = "idLattes") %>% 
+  left_join(
+    perfil.df.areas.de.atuacao %>% 
+      select(area, idLattes) %>% 
+      group_by(idLattes) %>% 
+      summarise(n_distinct(area)), 
+    by = "idLattes")
+
+#Adicionando informações ao grafo
+V(g)$orient_dout <- perfil.df$ORIENTACAO_CONCLUIDA_DOUTORADO
+V(g)$orient_mest <- perfil.df$ORIENTACAO_CONCLUIDA_MESTRADO
+V(g)$publicacao <- perfil.df$PERIODICO
+V(g)$eventos <- perfil.df$EVENTO
+
+V(g)$degree <- degree(g)
+V(g)$betweenness <- betweenness(g, normalized = TRUE)
+V(g)$closeness <- closeness(g, normalized = TRUE)
+V(g)$eigen <- eigen_centrality(g)$vector
+V(g)$cluster <- cluster_leading_eigen(g)$membership
+
+#Escrever o grafo para leitura em outro software
+write.graph(g, "graph.lattes.graphml", format = "graphml")
+
+#Filtrando somente os pesquisadores com Grande Área Ciências Exatas e da Terra
+#sub.graph <- (perfil.df.areas.de.atuacao %>% 
+#                filter(grande_area == "CIENCIAS_EXATAS_E_DA_TERRA") %>% 
+#                select(idLattes) %>% unique())[,1]
+
+#g2 <- induced_subgraph(g, sub.graph)
+
+#fc <- colorRampPalette(c("red","orange"),method="linear")
+#colors <- fc(max(V(g)$publicacao, na.rm = TRUE))
+
+plot(g, 
+     vertex.size = (V(g)$degree+1)*6,
+     # vertex.color = colors[V(g)$publicacao + 1],
+     vertex.label = graph$nodes$label,
+     layout = layout_nicely(g),
+     vertex.label.cex = 0.6)
+
+
+plot(g, 
+     vertex.size = na.omit(round(V(g)$publicacao+2)),
+     # vertex.color = colors[V(g)$publicacao + 1],
+     vertex.label = graph$nodes$label,
+     layout = layout_nicely(g),
+     vertex.label.cex = 0.6)
+# Perform fast-greedy community detection on network graph
+kc = fastgreedy.community(g)
+
+# Determine sizes of each community
+#sizes(kc)
+
+# Determine which individuals belong to which community
+#membership(kc)
+
+# Plot the community structure of the network
+plot(kc, g, vertex.label = graph$nodes$label, layout = layout_nicely(g))
+
+```
+
 ## Análise dos resultados
 
 Analisando as orientações concluídas do programa de pós-graduação podemos perceber uma ampla diferença, tanto na quantidade de docentes quanto na produção científica em si. O programa Ciência da Computação e Matemática Aplicada, além de mais antigo, possui um número significativo de dicentes, consequentemente, maior participação internacional, observando um foco nos Estados Unidos - juntamente no programa de pós-graduação de Computação Aplicada -, e também em diversos países da Ásia e Europa. Além disso, observamos um maior número de grandes empresas financiadoras, em comparação ao programa de pós-graduação de Computação Aplicada.
