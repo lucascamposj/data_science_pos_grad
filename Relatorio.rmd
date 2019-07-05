@@ -176,7 +176,7 @@ Projetos de Pesquisa |15
 
 ## Análise dos dados coletados
 
-Para a coleta de dados dos programas de graduação citados acima, utilizamos a plataforma elattes UnB (http://unb.elattes.com.br). Por meio dessa plataforma, obtivemos os dados de 2014 até 2018 das publicações científicas, dos docentes afiliados e sobre as orientações de cada programa de pós-graduação. Com auxilio da linguagem R, utilizamos scripts que nos permitiram interpretar os dados coletados.
+Para a coleta de dados dos programas de graduação citados acima, utilizamos a plataforma elattes UnB (http://unb.elattes.com.br). Por meio dessa plataforma, obtivemos os dados de 2014 até 2018 das publicações científicas, dos docentes afiliados e sobre as orientações de cada programa de pós-graduação. Com auxílio da linguagem R, utilizamos scripts que nos permitiram interpretar os dados coletados.
 
 ### Computação Aplicada (USP/SC)
 
@@ -240,7 +240,7 @@ ggplot(orient_p_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
     xlab("Ano") + ylab("Quantidade")
 ```
 \newpage
-Com o gráfico abaixo, observamos que a maioria dos docentes do programa de pós-graduação participou de eventos internacionais e, também, em 126 eventos pelo Brasil. Embora a maioria dos eventos atentidos pelos docentes serem no Brasil, observa-se um bom número de presenças em eventos internacionais principalmente nos Estados Unidos.
+Com o gráfico abaixo, observamos que a maioria dos docentes do programa de pós-graduação participou de eventos internacionais e, também, em 126 eventos pelo Brasil. Embora a maioria dos eventos atendidos pelos docentes serem no Brasil, observa-se um bom número de presenças em eventos internacionais principalmente nos Estados Unidos.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=5, fig.cap="Eventos internacionais comparecidos por docentes", fig.pos = 'H'}
 # extrai producao bibliografica de todos os professores 
@@ -387,7 +387,7 @@ ggplot(orient_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
 
 \newpage
 
-O gráfico abaixo nos apresenta números a respeito dos tipos de orientação não concluídos em função dos anos. Podemos observar um significativo aumento, a cada ano, nas orientações de mestrado não concluídas, chegando a seu maior valor do periodo em 2018. Com sua maior variação ocorrendo em 2017. Em contrapartida, no período de 2017 a 2018, observa-se uma grande queda nas teses de doutorado.   
+O gráfico abaixo nos apresenta números a respeito dos tipos de orientação não concluídos em função dos anos. Podemos observar um significativo aumento, a cada ano, nas orientações de mestrado não concluídas, chegando a seu maior valor do período em 2018. Com sua maior variação ocorrendo em 2017. Em contrapartida, no período de 2017 a 2018, observa-se uma grande queda nas teses de doutorado.   
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE,fig.align='center', fig.cap = "Natureza das supervisões em andamento", fig.pos = 'H'}
 ggplot(orient_p_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
@@ -397,7 +397,7 @@ ggplot(orient_p_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
 ```
 
 \newpage
-Com o gráfico abaixo, observamos que a maioria dos docentes do programa de pós-graduação participou de eventos internacionais. Embora a maioria dos eventos atentidos pelos docentes serem no Brasil, observa-se um grande número de presenças em eventos internacionais principalmente nos Estados Unidos.
+Com o gráfico abaixo, observamos que a maioria dos docentes do programa de pós-graduação participou de eventos internacionais. Embora a maioria dos eventos atendidos pelos docentes serem no Brasil, observa-se um grande número de presenças em eventos internacionais principalmente nos Estados Unidos.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=5, fig.cap = "Eventos internacionais comparecidos por docentes", fig.pos = 'H'}
 # extrai producao bibliografica de todos os professores 
@@ -448,7 +448,7 @@ Abaixo, podemos notar que grande parte dos docentes desse programa possuem como 
   geom_text(hjust =-0.1, vjust=0.5)
 ```
 
-Também podemos notar que é predominante a existência de pesquisadores nas áreas ligadas a exatas e a tecnologia. Nota-se, também, uma grande pluraridade de áreas, incluindo áreas das ciências humanas e da saúde. 
+Também podemos notar que é predominante a existência de pesquisadores nas áreas ligadas a exatas e a tecnologia. Nota-se, também, uma grande pluralidade de áreas, incluindo áreas das ciências humanas e da saúde. 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3, fig.cap = "Quantidade de docentes por Área", fig.pos = 'H'}  
 # Area de atuação area:
@@ -846,11 +846,11 @@ plot(kc, g, vertex.label = graph$nodes$label, layout = layout_nicely(g))
 
 ## Análise dos resultados
 
-Analisando as orientações concluídas do programa de pós-graduação podemos perceber uma ampla diferença, tanto na quantidade de docentes quanto na produção científica em si. O programa Ciência da Computação e Matemática Aplicada, além de mais antigo, possui um número significativo de dicentes, consequentemente, maior participação internacional, observando um foco nos Estados Unidos - juntamente no programa de pós-graduação de Computação Aplicada -, e também em diversos países da Ásia e Europa. Além disso, observamos um maior número de grandes empresas financiadoras, em comparação ao programa de pós-graduação de Computação Aplicada.
+Analisando as orientações concluídas do programa de pós-graduação podemos perceber uma ampla diferença, tanto na quantidade de docentes quanto na produção científica em si. O programa Ciência da Computação e Matemática Aplicada, além de mais antigo, possui um número significativo de discentes, consequentemente, maior participação internacional, observando um foco nos Estados Unidos - juntamente no programa de pós-graduação de Computação Aplicada -, e também em diversos países da Ásia e Europa. Além disso, observamos um maior número de grandes empresas financiadoras, em comparação ao programa de pós-graduação de Computação Aplicada.
 
-Pelas nuvens de palavras geradas é possível observar que existem certas similaridades entre os temas tratados em cada programa de pós graduação. Nota-se que as palavras network e data são amplamente utilizadas nos periódicos produzidos pelos docentes. Esse fato é esperado, visto que existe certa similaridade entre os principais campos de estudo abordados entre os programas estudados nesse relatório.
+Pelas nuvens de palavras geradas é possível observar que existem certas similaridades entre os temas tratados em cada programa de pós graduação. Nota-se que as palavras network e data são amplamente utilizadas nos periódicos produzidos pelos docentes. Esse fato é esperado, visto que existe certa similaridade entre os principais campos de estudo abordados entre os programas estudados neste relatório.
 
-Com as redes geradas, observamos certos comportamentos curiosos. Existem docentes que possuem um alto numero de publicações, porém esses mesmos docentes não possuem muitas conexões entre eles. Exemplificando, o docente André Carlos Ponce de Leon Ferreira de Carvalho do programa de pós gradução Ciência da computação e matemática aplicada, possui poucas conexões, porém quando observamos o grafo de quantidade de publicações, verifica-se um grande número de publicações para esse mesmo docente.
+Com as redes geradas, observamos certos comportamentos curiosos. Existem docentes que possuem um alto número de publicações, porém esses mesmos docentes não possuem muitas conexões entre eles. Exemplificando, o docente André Carlos Ponce de Leon Ferreira de Carvalho do programa de pós-gradução Ciência da computação e matemática aplicada, possui poucas conexões, porém quando observamos o grafo de quantidade de publicações, verifica-se um grande número de publicações para esse mesmo docente.
 
 Todas essas observações comprovam as disparidades entre os programas, justificando uma nota 7 no programa Ciência da Computação e Matemática Aplicada e 3 no programa Computação Aplicada.
 
