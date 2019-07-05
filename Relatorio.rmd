@@ -378,7 +378,7 @@ orient_p_sum <- group_by(orient_p.df, ano, natureza) %>%
 
 O gráfico abaixo nos apresenta números a respeito dos tipos de orientação concluídas em função dos anos. Podemos observar uma significativa queda nas orientações de mestrados concluídas no ano de 2017.Em contrapartida, temos um aumento significativo nas orientações concluídas de doutorados. Curiosamente, no ano de 2018, os números de orientações concluídas de doutorado e mestrado se aproximam bastante. Vale ressaltar que essas orientações são a soma de todos os programas de pós-graduação em que os docentes fazem parte. 
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=6, fig.height=4, fig.align='center', fig.cap = "Natureza das supervisões concluídos", fig.pos = 'H'}
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=6, fig.height=4, fig.align='center', fig.cap = "Natureza das supervisões concluídas", fig.pos = 'H'}
 ggplot(orient_sum, aes(x = ano, y = n, group = natureza, color = natureza)) +
   geom_line(alpha = 0.6) +
   geom_point(alpha = 0.6) +
