@@ -284,6 +284,7 @@ Abaixo, podemos notar que grande parte dos docentes desse programa possuem como 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3, fig.cap = "Quantidade de docentes por Grande Área", fig.pos = 'H'}
 # Area de atuação grande area:
   pr.df.areas %>%
+  filter(grande_area!="") %>%
   group_by(grande_area) %>% summarize(n = n()) %>%
   ggplot(aes(x = grande_area, y = n, label = n)) +
   geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Grande Áreas") + ylab("Quantidade de docentes") + 
@@ -297,7 +298,8 @@ Também podemos notar que é predominante a existência de pesquisadores nas ár
 ```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3, fig.cap = "Quantidade de docentes por Área", fig.pos = 'H'}  
 # Area de atuação area:
 pr.df.areas %>%
-group_by(area) %>% summarize(n = n()) %>%
+  filter(area != "") %>%
+  group_by(area) %>% summarize(n = n()) %>%
   ggplot(aes(x = area, y = n, label = n)) +
   geom_bar( fill = '#1287F6', stat = "identity") + coord_flip() + coord_flip() + xlab("Áreas") + ylab("Quantidade de docentes") +
   geom_text(hjust =-0.1, vjust=0.5)
@@ -439,9 +441,10 @@ pr.df.pub %>%
 
 Abaixo, podemos notar que grande parte dos docentes desse programa possuem como grande área a de Ciências Exatas e da Terra seguido por Engenharias. Esse fato nos mostra que as grandes áreas dos pesquisadores envolvidos no programa estão condizentes com a proposta do programa de pós-graduação.
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=8, fig.height=3, fig.cap = "Quantidade de docentes por Grande Área", fig.pos = 'H'}
+```{r echo=FALSE, warning=FALSE, message=FALSE, ,fig.align='center', fig.width=9, fig.height=3, fig.cap = "Quantidade de docentes por Grande Área", fig.pos = 'H'}
 # Area de atuação grande area:
   pr.df.areas %>%
+  filter(grande_area!="") %>%
   group_by(grande_area) %>% summarize(n = n()) %>%
   ggplot(aes(x = grande_area, y = n, label = n)) +
   geom_bar(fill = '#1287F6', stat = "identity") + coord_flip() + xlab("Grande Áreas") + ylab("Quantidade de docentes") + 
